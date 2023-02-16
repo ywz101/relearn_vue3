@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <!-- 1. 引入Vue -->
+  <script src="https://unpkg.com/vue@next"></script>
+
+  <!-- 2. 使用Vue -->
+  <script>
+    // 当引入CDN的时候, 全局对象Vue
+    console.log(typeof Vue) // object
+
+    // 在Vue对象中有一个createApp()的函数, 在对象中的函数我们一般方法
+    // createApp(), 参数一般以对象的形式来接收
+    const app = Vue.createApp({
+      // 模板: template, 可以在里面自己的html
+      template: `<h1>Hello Vue</h1>`
+    })
+
+    // 挂载: mount(), 参数: css选择器
+    app.mount('#app')
+
+    // 总结: 以上代码的本质功能是将template里面的html标签解析后挂载到div#app容器中渲染
+
+    // 缺点: 始终要经过Vue官方的服务器, 所以在访问速度上会有所下降
+  </script>
+</body>
+
+</html>

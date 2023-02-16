@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 1. 先指定id为app的容器 -->
+  <div id="app"></div>
+
+  <!-- 2. 本地引入Vue -->
+  <script src="./lib/vue.js"></script>
+
+  <!-- 3. 使用Vue -->
+  <script>
+    const app = Vue.createApp({
+      // 模板: template
+      // 插件语法(Mustache): {{ xxx }}
+      template: `<h2>{{ message }}</h2>`,
+      // data: 选项
+      data: function () {
+        // 返回一个对象
+        return {
+          // 定义数据
+          message: '你好啊, Vue3'
+        }
+      }
+    })
+
+    // 挂载
+    app.mount('#app')
+  </script>
+</body>
+
+</html>
