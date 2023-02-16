@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <h2>计数器: {{ counter }}</h2>
+    <button @click="increment">+1</button>
+    <button @click="decrement">-1</button>
+  </div>
+
+  <script src="./lib/vue.js"></script>
+
+  <script>
+    const app = Vue.createApp({
+      // vue2中data选项支持对象和函数(官方推荐函数写法, vue2写法更松散, 统一性不好)
+      // vue3中data选项必须是函数(vue3写法更严谨, 统一性更好)
+
+      // vue2中data的数据劫持实现原理是Object.defineProperty()中的getter和setter
+      // vue3中data的数据劫持实现原理是new Proxy()中的getter和setter
+      data() {
+        return {
+          counter: 0
+        }
+      },
+      methods: {
+        increment() {
+          this.counter++
+        },
+        decrement() {
+          this.counter--
+        }
+      }
+    })
+
+    app.mount('#app')
+  </script>
+</body>
+
+</html>

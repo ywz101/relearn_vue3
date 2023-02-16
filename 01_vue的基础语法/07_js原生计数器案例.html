@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h2>计数器: <span>0</span></h2>
+  <button class="increment">+1</button>
+  <button class="decrement">-1</button>
+
+  <script>
+    // 定义全局变量 counter, 初始值为0
+    let counter = 0
+
+    // 1. 获取元素
+    const spanEl = document.querySelector('span')
+    const incrementEl = document.querySelector('.increment')
+    const decrementEl = document.querySelector('.decrement')
+
+    // 2.监听事件
+    incrementEl.addEventListener('click', () => {
+      // 递增
+      commonCode('increment')
+    })
+
+    decrementEl.addEventListener('click', () => {
+      commonCode('decrement')
+    })
+
+    // 封装函数
+    function commonCode(condition) {
+      if (condition === 'increment') {
+        counter++
+      } else if (condition === 'decrement') {
+        counter--
+      }
+      spanEl.textContent = counter
+    }
+  </script>
+</body>
+
+</html>
