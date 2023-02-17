@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 1. 指定id为app的容器 -->
+  <div id="app">
+    <h2>{{ message }}</h2>
+    <!-- v-pre指令: 某种场景应用, 可以有效加快编译速度, 当我们想原封的展示{{}}, 可以使用到v-pre指令 -->
+    <!-- v-pre指令也会有连带效果, 会影响所有的子节点(组件) -->
+    <h2>
+      message: {{ message }}
+      <br>
+      <span v-pre>
+        这个{{}}是插值语法的字面量
+      </span>
+    </h2>
+  </div>
+
+  <!-- 2. 本地通过相对路径的形式引入Vue -->
+  <script src="../lib/vue.js"></script>
+
+  <script>
+    // 3.使用Vue
+    const app = Vue.createApp({
+      data() {
+        return {
+          message: 'Hello Vue3'
+        }
+      }
+    })
+
+    // 4.挂载app
+    app.mount('#app')
+  </script>
+</body>
+
+</html>
