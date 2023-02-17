@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 1. 指定id为app的容器 -->
+  <div id="app">
+    <h2>aaa {{ message }} bbb</h2>
+    <!-- v-text指令: 本质就是Mustache语法的降级, 因为它的灵活性不如Mustache语法 -->
+    <!-- 一旦使用v-text指令, 元素中的文本节点不会再生效了, 类似于<script src="xx.js">里面的语句不会生效</script> -->
+    <h2 v-text="message"></h2>
+  </div>
+
+  <!-- 2. 本地通过相对路径的形式引入Vue -->
+  <script src="../lib/vue.js"></script>
+
+  <script>
+    // 3.使用Vue
+    const app = Vue.createApp({
+      data() {
+        return {
+          message: 'Hello Vue3'
+        }
+      }
+    })
+
+    // 4.挂载app
+    app.mount('#app')
+  </script>
+</body>
+
+</html>

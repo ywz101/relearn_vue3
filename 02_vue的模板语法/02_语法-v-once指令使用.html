@@ -11,11 +11,13 @@
 <body>
   <!-- 1. 指定id为app的容器 -->
   <div id="app">
-    <!-- v-once: 只约束渲染一次, 但是值是无法被约束住的 -->
+    <!-- v-once指令: 只约束渲染一次, 但是值是无法被约束住的 -->
+    <!-- v-once指令, 会有连带效果, 会影响它的子节点 -->
+    <!-- 实际开发中应用场景可能并不多, 但是应用的好, 某种意义上来讲是可以帮助我们提升性能的 -->
     <h2 v-once>
       message: {{ message }}
       <br>
-      counter: {{ counter }}
+      <span>counter: {{ counter }}</span>
     </h2>
 
     <h2>{{ message }}</h2>

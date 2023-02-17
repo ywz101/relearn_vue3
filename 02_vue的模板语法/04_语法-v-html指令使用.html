@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 1. 指定id为app的容器 -->
+  <div id="app">
+    <h2>{{ message }}</h2>
+    <!-- v-html指令: 将用字符串包裹的html元素解析并渲染出来 -->
+    <!-- 它会字符串的嵌套, 所以当属性中使用了双引号, 外层包裹的引号, 必须是非双引号 -->
+    <h2 v-html="content"></h2>
+  </div>
+
+  <!-- 2. 本地通过相对路径的形式引入Vue -->
+  <script src="../lib/vue.js"></script>
+
+  <script>
+    // 3.使用Vue
+    const app = Vue.createApp({
+      data() {
+        return {
+          message: 'Hello Vue3',
+          content: '<span style="color: red; font-size: 30px;">我是v-html指令</span>'
+        }
+      }
+    })
+    
+    // 4.挂载app
+    app.mount('#app')
+  </script>
+</body>
+
+</html>
