@@ -28,11 +28,18 @@
     </button> -->
 
     <!-- 3. 如果对象语法有多个属性, 可以将对象语法写在函数中 -->
-    <button class="abc cba" 
+    <!-- <button class="abc cba" 
             :class="toggleClass()"
             @click="changeBtnColor">
       按钮
-    </button>
+    </button> -->
+
+    <!-- 4. 数组语法(了解): ['why', 'ywz101'] -->
+    <button class="abc cba" 
+            :class="['why', nameClass, { active: isActive }]"
+            @click="changeBtnColor">
+      按钮
+  </button>
   </div>
 
   <!-- 2. 本地通过相对路径的形式引入Vue -->
@@ -43,7 +50,8 @@
     const app = Vue.createApp({
       data() {
         return {
-          isActive: false
+          isActive: false,
+          nameClass: 'ywz101'
         }
       },
       methods: {
