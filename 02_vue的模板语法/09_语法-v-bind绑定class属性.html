@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .active {
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 1. 指定id为app的容器 -->
+  <div id="app">
+    <!-- v-bind指令: 绑定class -->
+    <!-- 通过:class生成的值不会影响已有的class里面的值, 会以追加的形式添加进去 -->
+
+    <!-- 1. 三元运算符(当表达式过长时, 则不建议三元运算符了) -->
+    <!-- <button class="abc cba" :class="active = isActive === true ? 'active' : '' ">按钮</button> -->
+
+    <!-- 2. 对象语法: { key: value } -->
+    <!-- <button class="abc cba" :class="{ active: isActive }" @click="changeBtnColor">
+      按钮
+    </button> -->
+
+    <!-- 3. 如果对象语法有多个属性, 可以将对象语法写在函数中 -->
+    <button class="abc cba" 
+            :class="toggleClass()"
+            @click="changeBtnColor">
+      按钮
+    </button>
+  </div>
+
+  <!-- 2. 本地通过相对路径的形式引入Vue -->
+  <script src="../lib/vue.js"></script>
+
+  <script>
+    // 3.使用Vue
+    const app = Vue.createApp({
+      data() {
+        return {
+          isActive: false
+        }
+      },
+      methods: {
+        changeBtnColor() {
+          this.isActive = !this.isActive
+        },
+        toggleClass() {
+          return {
+            active: this.isActive,
+            why: true,
+            ywz101: true
+          }
+        }
+      }
+    })
+
+    // 4.挂载app
+    app.mount('#app')
+  </script>
+</body>
+
+</html>
