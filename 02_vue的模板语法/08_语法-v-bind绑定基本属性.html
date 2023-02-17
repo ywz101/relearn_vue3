@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    img {
+      width: 800px;
+      height: 400px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 1. 指定id为app的容器 -->
+  <div id="app">
+    <!-- v-bind:指令: 用来绑定一些属性, 可以将原来写死的属性值变成动态的 -->
+    <!-- 语法糖: v-bind: -> : -->
+    <!-- 通常会应用在图片的src中, a元素的href中 -->
+    <!-- 小案例: 切换图片 -->
+    <div>
+      <button @click="switchImage">切换图片</button>
+    </div>
+    <!-- <img v-bind:src="showImgUrl" alt=""> -->
+
+    <!-- 语法糖 -->
+    <img :src="showImgUrl" alt="">
+  </div>
+
+  <!-- 2. 本地通过相对路径的形式引入Vue -->
+  <script src="../lib/vue.js"></script>
+
+  <script>
+    // 3.使用Vue
+    const app = Vue.createApp({
+      data() {
+        return {
+          imgUrl1: 'http://p1.music.126.net/fzRM8lRuIA4Q4ktYKXsl2Q==/109951168314643639.jpg',
+          imgUrl2: 'http://p1.music.126.net/o5OAvI79dmUfcYdSSL5slg==/109951168314733059.jpg',
+          showImgUrl: 'http://p1.music.126.net/o5OAvI79dmUfcYdSSL5slg==/109951168314733059.jpg'
+        }
+      },
+      methods: {
+        switchImage() {
+          this.showImgUrl = this.showImgUrl === this.imgUrl1 ? this. imgUrl2 : this.imgUrl1
+        }
+      }
+    })
+
+    // 4.挂载app
+    app.mount('#app')
+  </script>
+</body>
+
+</html>
