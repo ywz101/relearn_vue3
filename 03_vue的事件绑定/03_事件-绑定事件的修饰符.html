@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .father {
+      display: flex;
+      align-items: center;
+      width: 200px;
+      height: 200px;
+      background: orange;
+    }
+
+    .children {
+      margin: 0 auto;
+      width: 100px;
+      height: 100px;
+      background: red;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 1. 指定id为app的容器 -->
+  <div id="app">
+    <!-- (1) stop修饰符: 本质是event.stopPropagation(): 阻止事件的冒泡 -->
+    <div class="father" @mousemove="fatherMousemove">
+      <div class="children" @mousemove.stop="childrenMousemove"></div>
+    </div>
+
+    <!-- (2) prevent修饰符: 本质是event.preventDefault(): 阻止事件的默认行为 -->
+    <!-- 注意: 在location.href中修饰符无效 -->
+    <!-- <button @click.prevent="jumpToBaidu">百度一下</button> -->
+    <a :href="url" @click.prevent="jumpToBaidu">百度一下</a>
+  </div>
+
+  <!-- 2. 本地通过相对路径的形式引入Vue -->
+  <script src="../lib/vue.js"></script>
+
+  <script>
+    // 3.使用Vue
+    const app = Vue.createApp({
+      data() {
+        return {
+          message: 'Hello Vue3',
+          url: 'https://www.baidu.com'
+        }
+      },
+      methods: {
+        fatherMousemove() {
+          console.log('fatherMousemove~')
+        },
+        childrenMousemove() {
+          console.log('childrenMousemove~')
+        },
+        jumpToBaidu() {
+          console.log('阻止事件默认行为')
+        }
+      }
+    })
+
+    // 4.挂载app
+    app.mount('#app')
+  </script>
+</body>
+
+</html>
