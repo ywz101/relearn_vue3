@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 1. 指定id为app的容器 -->
+  <div id="app">
+    <!-- v-if: 条件渲染, 目前这种写法还是有点长, 后续我们可以使用computed选项优化它 -->
+    <template class="info" v-if="Object.keys(info).length"> <!-- [].length = 0 -> false -->
+      <ul>
+        <!-- 目前有多少li, 还需要我们自己手动数, 这边写起来还是不太科学, 后续我们会使用v-for来优化它 -->
+        <li>姓名: {{ info.name }}</li>
+        <li>年龄: {{ info.age }}</li>
+        <li>身高: {{ info.height }}</li>
+      </ul>
+    </template>
+
+    <!-- template元素存在的意义: 目前我们始终用div来包裹某些元素, 在包裹的div中去插入vue指令, 这种写法会生成元素的冗余, 后续我们会使用<template></template>来优化 -->
+    <template v-else>
+      <h2>当前没有个人信息</h2>
+      <p>请获取信息后再渲染</p>
+    </template>
+  </div>
+
+  <!-- 2. 本地通过相对路径的形式引入Vue -->
+  <script src="../lib/vue.js"></script>
+
+  <script>
+    // 3.使用Vue
+    const app = Vue.createApp({
+      data() {
+        return {
+          info: {
+        
+          }
+        }
+      }
+    })
+
+    // 4.挂载app
+    app.mount('#app')
+  </script>
+</body>
+
+</html>
