@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 1. 指定id为app的容器 -->
+  <div id="app">
+    <!-- :语法糖逐个绑定的写法 -->
+    <h2 :name="['name']" :age="['age']" :height="['height']">Hello Bind</h2>
+
+
+    <!-- v-bind直接绑定对象: 此种重点在于批量绑定数据, (而非单个:语法糖的写法, 逐个绑定) -->
+    <!-- 在后续组件传参中会经常用到, name属性目前没有作用, 但是在组件开发中, 是特殊意义的 -->
+    <h2 v-bind="infos">Hello Bind</h2>
+
+    <!-- 其实也可以使用:语法糖来绑定批量的数据(但是不推荐这么做, 因为阅读性不好) -->
+    <h2 :="infos">Hello Bind</h2>
+  </div>
+
+  <!-- 2. 本地通过相对路径的形式引入Vue -->
+  <script src="../lib/vue.js"></script>
+
+  <script>
+    // 3.使用Vue
+    const app = Vue.createApp({
+      data() {
+        return {
+          name: 'ywz101',
+          age: 18,
+          height: 1.88,
+
+          infos: {
+            name: 'ywz101',
+            age: 18,
+            height: 1.88
+          }
+        }
+      }
+    })
+
+    // 4.挂载app
+    app.mount('#app')
+  </script>
+</body>
+
+</html>
