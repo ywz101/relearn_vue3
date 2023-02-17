@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .products {
+      width: 300px;
+      background: orange;
+    }
+
+    .products h2 {
+      color: red;
+    }
+    
+    .products span {
+      font-style: italic;
+    }
+
+    .products p {
+      text-indent: 2em;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 1. 指定id为app的容器 -->
+  <div id="app">
+    <!-- v-for: 遍历data中的数据, 类似于原生js中的for循环-->
+    <!-- (1) 只遍历数组元素 -->
+    <!-- <h2>小说列表</h2>
+    <ul>
+      <li v-for="novel in novels">{{ novel }}</li>
+    </ul>
+  </div> -->
+
+  <!-- (2) 遍历数组元素和索引 -->
+  <!-- <h2>小说列表</h2>
+  <ul>
+    <li v-for="(novel, index) in novels">{{ index }} - {{ novel }}</li>
+  </ul> -->
+
+  <!-- (3) 处理复杂(数组里面嵌套对象)数据, 更加贴近于真实开发 -->
+  <div class="products" v-for="product in products">
+    <h2>商品: {{ product.name }}</h2>
+    <span>价格: {{ product.price }}</span>
+    <p>秒杀: {{ product.desc }}</p>
+  </div>
+  </div>
+
+  <!-- 2. 本地通过相对路径的形式引入Vue -->
+  <script src="../lib/vue.js"></script>
+
+  <script>
+    // 3.使用Vue
+    const app = Vue.createApp({
+      data() {
+        return {
+          novels: ['《流星蝴蝶剑》', '《无情剑客多情剑》', '《萧十一郎》'],
+          products: [
+            { id: 110, name: 'MacBook', price: 9.9, desc: '9.9秒杀, 快来抢购吧!'},
+            { id: 111, name: 'RedMi phone', price: 8.8, desc: '8.8秒杀, 快来抢购吧!'},
+            { id: 112, name: 'HHKB键盘', price: 9.9, desc: '9.9秒杀, 快来抢购吧!'},
+          ]
+        }
+      }
+    })
+
+    // 4.挂载app
+    app.mount('#app')
+  </script>
+</body>
+
+</html>
