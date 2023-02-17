@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 1. 指定id为app的容器 -->
+  <div id="app">
+    <!-- v-if: 条件渲染, 目前这种写法还是有点长, 后续我们可以使用computed选项优化它 -->
+    <div class="info" v-if="Object.keys(info).length"> <!-- [].length = 0 -> false -->
+      <ul>
+        <!-- 目前有多少li, 还需要我们自己手动数, 这边写起来还是不太科学, 后续我们会使用v-for来优化它 -->
+        <li>姓名: {{ info.name }}</li>
+        <li>年龄: {{ info.age }}</li>
+        <li>身高: {{ info.height }}</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 2. 本地通过相对路径的形式引入Vue -->
+  <script src="../lib/vue.js"></script>
+
+  <script>
+    // 3.使用Vue
+    const app = Vue.createApp({
+      data() {
+        return {
+          info: {
+            name: 'ywz101',
+            age: 18,
+            height: 1.88
+          }
+        }
+      }
+    })
+
+    // 4.挂载app
+    app.mount('#app')
+  </script>
+</body>
+
+</html>
