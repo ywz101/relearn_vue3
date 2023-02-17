@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box {
+      margin-top: 10px;
+      width: 100px;
+      height: 100px;
+      background: orange;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 1. 指定id为app的容器 -->
+  <div id="app">
+    <!-- v-on的基本写法 -->
+    <div class="box" v-on:click="divClick"></div>
+
+    <!-- 语法糖的写法 - 多个事件绑定 -->
+    <div class="box"
+         @click="divClick"
+         @mousemove="divMousemove">
+    </div>
+
+    <!-- 多个事件绑定: 对象语法(不推荐)  -->
+    <!-- <div class="box" 
+          v-on="{
+                  click: divClick, 
+                  mousemove: divMousemove 
+                }">
+    </div> -->
+
+    <h2>当前计数: {{ counter }}</h2>
+    <!-- 语法糖写法-计数器案例 -->
+    <!-- <button @click="increment">+1</button> -->
+
+    <!-- 可以直接在v-bind指令中写表达式(不推荐) -->
+    <!-- 为什么不推荐? 因为不符合MVVM设计准则  -->
+    <button @click="counter++">+1</button>
+  </div>
+
+  <!-- 2. 本地通过相对路径的形式引入Vue -->
+  <script src="../lib/vue.js"></script>
+
+  <script>
+    // 3.使用Vue
+    const app = Vue.createApp({
+      data() {
+        return {
+          counter: 0
+        }
+      },
+      methods: {
+        divClick() {
+          console.log('divClick~')
+        },
+        increment() {
+          this.counter++
+        },
+        divMousemove() {
+          console.log('divMousemove~')
+        }
+      }
+    })
+
+    // 4.挂载app
+    app.mount('#app')
+  </script>
+</body>
+
+</html>
