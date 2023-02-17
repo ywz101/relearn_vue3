@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 1. 指定id为app的容器 -->
+  <div id="app">
+    <!-- v-memo(备忘录)指令: v-memo并不是阻止值的修改, 相当于是一种特殊的条件渲染, 某个被记录在vue底层的备忘录中, 当符合, 整个更新将被跳过 -->
+    <!-- 合理使用, 也可以实现性能上的优化 -->
+    <div v-memo="[name]"> <!-- 必须在name发生改变的时候, 才会重新渲染 -->
+      <h2> {{ name }}</h2>
+      <h2>{{ age }}</h2>
+      <h2>{{ height }}</h2>
+    </div>
+    <button @click="updateInfo">更新信息</button>
+  </div>
+
+  <!-- 2. 本地通过相对路径的形式引入Vue -->
+  <script src="../lib/vue.js"></script>
+
+  <script>
+    // 3.使用Vue
+    const app = Vue.createApp({
+      data() {
+        return {
+          name: 'kobe',
+          age: 18,
+          height: 1.98
+        }
+      },
+      methods: {
+        updateInfo() {
+          this.name = 'james'
+          this.age = 20
+          this.height = 2.06
+          console.log(this.age)
+          console.log(this.height)
+        }
+      }
+    })
+
+    // 4.挂载app
+    app.mount('#app')
+  </script>
+</body>
+
+</html>
