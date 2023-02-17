@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 1. 指定id为app的容器 -->
+  <div id="app">
+    <div>
+      <button @click="toggle">切换</button>
+    </div>
+
+    <!-- 1. 注意: v-show不能和template元素结合使用, 因为v-show它的实现原理是需要依赖元素本身的, 如果元素都没有css的效果也无从下手 -->
+    <!-- 2. v-show它的实现原型其实就是元素中插入行内样式, 例如: <div style="display: none;"></div> -->
+    <!-- 3. 使用场景: 需要频繁切换元素的显式/隐藏的时候, 推荐v-show -->
+    <div v-show="isShow">
+      <img :src="imgUrl" alt="">
+    </div>
+  </div>
+
+  <!-- 2. 本地通过相对路径的形式引入Vue -->
+  <script src="../lib/vue.js"></script>
+
+  <script>
+    // 3.使用Vue
+    const app = Vue.createApp({
+      data() {
+        return {
+          imgUrl: 'https://game.gtimg.cn/images/yxzj/web201706/images/comm/floatwindow/wzry_qrcode.jpg',
+          isShow: true
+        }
+      },
+      methods: {
+        toggle() {
+          this.isShow = !this.isShow
+        }
+      }
+    })
+
+    // 4.挂载app
+    app.mount('#app')
+  </script>
+</body>
+
+</html>
