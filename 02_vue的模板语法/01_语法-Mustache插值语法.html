@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 1. 指定id为app的容器 -->
+  <div id="app">
+    <!-- 1. 基本使用, 也就是直接插入属性 -->
+    <h2>message: {{ message }}</h2>
+    <h2>counter: {{ counter }}</h2>
+
+    <!-- 2. 表达式 -->
+    <h2>双倍计数: {{ counter * 2 }}</h2>
+    <h2>展示信息: {{ info.split(' ').reverse().join(' ') }}</h2>
+
+    <!-- 3. 三元运算符 -->
+    <h2>是否为成年人: {{ age >= 18 ? '成年人' : '未成年人' }}</h2>
+
+    <!-- 4. 可以在内部调用methods选项中的方法 -->
+    <h2>当前日期: {{ formatDate(time) }}</h2>
+
+    <!-- 5. 不能输入语句 -->
+    <!-- <h2>{{ const name = 'ywz101' }}</h2> -->
+  </div>
+
+  <!-- 2. 本地通过相对路径的形式引入Vue -->
+  <script src="../lib/vue.js"></script>
+
+  <script>
+    // 3.使用Vue
+    const app = Vue.createApp({
+      data() {
+        return {
+          message: 'Hello Vue3',
+          counter: 100,
+          info: 'my name is ywz101', 
+          age: 12,
+          time: '9:34'
+        }
+      },
+      methods: {
+        formatDate(time) {
+          return `2023-2-17 ${time}`
+        }
+      }
+    })
+
+    // 4.挂载app
+    app.mount('#app')
+  </script>
+</body>
+
+</html>

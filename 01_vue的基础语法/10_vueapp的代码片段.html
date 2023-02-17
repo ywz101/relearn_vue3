@@ -9,29 +9,28 @@
 </head>
 
 <body>
-  <!-- 1. 先指定id为app的容器 -->
-  <div id="app"></div>
+  <!-- 代码片段在线生成网站 -->
+  <!-- https://snippet-generator.app -->
 
-  <!-- 2. 本地引入Vue -->
+  <!-- 1. 指定id为app的容器 -->
+  <div id="app">
+    <h2>{{ message }}</h2>
+  </div>
+
+  <!-- 2. 本地通过相对路径的形式引入Vue -->
   <script src="./lib/vue.js"></script>
 
-  <!-- 3. 使用Vue -->
   <script>
+    // 3.使用Vue
     const app = Vue.createApp({
-      // 模板: template
-      // 插值语法(Mustache): {{ xxx }}
-      template: `<h2>{{ message }}</h2>`,
-      // data: 选项
-      data: function () {
-        // 返回一个对象
+      data() {
         return {
-          // 定义数据
-          message: '你好啊, Vue3'
+          message: 'Hello Vue3'
         }
       }
     })
 
-    // 4. 挂载
+    // 4.挂载app
     app.mount('#app')
   </script>
 </body>
