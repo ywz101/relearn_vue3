@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    ul {
+      width: 200px;
+      height: 200px;
+      background: orange;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- noscript: 如果当前的浏览器没有开启支持Javascript功能, 则会渲染noscript中的内容 -->
+  <!-- <noscript>请升级您的浏览器, 或者建议你更换为chrome浏览器</noscript> -->
+
+  <!-- 1. 指定id为app的容器 -->
+  <div id="app">
+    <!-- v-if-else: 条件渲染, 根据condition, 决定是否渲染在浏览器上 -->
+    <!-- 需求: 如果names数组里面有内容, 就正常渲染内容, 如果没有内容, 就显示当前数组中没有内容, 请获取需要展示的内容 -->
+    <!-- 注意: 在夹杂着vue指令的元素中, 如果要进行元素的remove操作, 可能会触发元素的保护机制 -->
+    <ul v-if="names.length > 0">
+      <li v-for="item in names">{{ item }}</li>
+    </ul>
+
+    <h2 v-else>当前数组中没有内容, 请获取需要展示的内容</h2>
+
+    <button @click="clearArray">清空数组</button>
+  </div>
+  <!-- 2. 本地通过相对路径的形式引入Vue -->
+  <script src="../lib/vue.js"></script>
+
+  <script>
+    const ul = document.querySelector('.list')
+    ul.addEventListener('click', () => {
+      ul.remove()
+    })
+    // 3.使用Vue
+    const app = Vue.createApp({
+      data() {
+        return {
+          names: ['kobe', 'james', 'nicholas', 'ywz101', 'coderwhy']
+        }
+      },
+      methods: {
+        clearArray() {
+          this.names.length = 0
+        }
+      }
+    })
+
+    // 4.挂载app
+    app.mount('#app')
+  </script>
+</body>
+
+</html>
