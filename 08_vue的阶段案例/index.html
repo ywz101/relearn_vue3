@@ -28,13 +28,17 @@
 
     }
 
-    tbody tr:hover {
+    /* tbody tr:hover {
       background: #f5f5f5;
-    }
+    } */
 
     tfoot {
       font-weight: 700;
       text-align: left;
+    }
+
+    .active {
+      background-color: skyblue;
     }
   </style>
 </head>
@@ -55,7 +59,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(item, index) in books" :key="index">
+          <tr :class="{ active: index === currentIndex }"
+              v-for="(item, index) in books"
+              :key="index"
+              @click="tableRowClick(index)">
             <td>{{ index + 1 }}</td>
             <td>{{ item.name }}</td>
             <td>{{ item.date }}</td>
@@ -92,7 +99,8 @@
     const app = Vue.createApp({
       data() {
         return {
-          books: books
+          books: books,
+          currentIndex: -1
         }
       },
       computed: {
@@ -115,6 +123,9 @@
         },
         removeBook(index) {
           this.books.splice(index, 1)
+        },
+        tableRowClick(index) {
+          this.currentIndex = index
         }
       }
     })

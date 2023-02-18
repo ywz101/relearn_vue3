@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 1. 指定id为app的容器 -->
+  <div id="app">
+    <!-- (1) 普通写法: v-bind:value 和 v-on:input -->
+    <!-- <input type="text" 
+           :value="message"
+           @input="changeMessage" >
+    <h2>{{ message }}</h2> -->
+
+    <!-- (2) 语法糖写法: v-model -->
+    <input type="text" v-model="message">
+    <h2>{{ message }}</h2>
+
+    <!-- (3) 登录功能简单模拟 -->
+    <div class="account">
+      <label>
+        账号: <input type="text" v-model="account">
+      </label>
+    </div>
+
+    <div class="password">
+      <label>
+        密码: <input type="text" v-model="password">
+      </label>
+    </div>
+
+    <button @click="loginBtnClick">登录</button>
+  </div>
+
+  <!-- 2. 本地通过相对路径的形式引入Vue -->
+  <script src="../lib/vue.js"></script>
+
+  <script>
+    // 3.使用Vue
+    const app = Vue.createApp({
+      data() {
+        return {
+          message: 'Hello v-model',
+          account: '',
+          password: ''
+        }
+      },
+      methods: {
+        // changeMessage(event) {
+        //   this.message = event.target.value
+        // }
+        loginBtnClick(event) {
+          const account = this.account
+          const password = this.password
+          // 保存到localStorage
+          localStorage.setItem('account', account)
+          localStorage.setItem('password', password)
+
+          if (account !== 'ywz101') {
+            console.log('账号不存在, 请先注册')
+          }
+        }
+      }
+    })
+
+    // 4.挂载app
+    app.mount('#app')
+  </script>
+</body>
+
+</html>
