@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 1. 指定id为app的容器 -->
+  <div id="app">
+    <h2>{{ fullname }}</h2>
+
+    <button @click="setFullname">设置fullname</button>
+  </div>
+
+  <!-- 2. 本地通过相对路径的形式引入Vue -->
+  <script src="../lib/vue.js"></script>
+
+  <script>
+    // 3.使用Vue
+    const app = Vue.createApp({
+      data() {
+        return {
+          firstName: 'ywz',
+          lastName: 101
+        }
+      },
+      computed: {
+        // 完整写法
+        fullname: {
+          // get中需要return
+          get() {
+            return this.firstName + ' ' + this.lastName
+          },
+          // set中不需要return
+          set(value) {
+            const names = value.split(' ')
+            this.firstName = names[0]
+            this.lastName = names[1]
+          }
+        }
+      },
+      methods: {
+        setFullname() {
+          this.fullname = 'kobe bryant'
+        }
+      }
+    })
+
+    // 4.挂载app
+    app.mount('#app')
+  </script>
+</body>
+
+</html>
