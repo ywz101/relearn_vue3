@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 1. 指定id为app的容器 -->
+  <div id="app">
+    <!-- radio: 
+      (1) v-model操作radio的时候, 需要刻意关注value值 
+      (2) 当v-model绑定的值相同并且设有value值的时候, 无需在设置name, 就能互斥的效果
+      (3) label只能生效一个input
+    -->
+    <label>
+      <input type="radio" 
+             v-model="gender" 
+             value="male"> 男
+    </label>
+    <label>
+      <input type="radio" 
+             v-model="gender"
+             value="female"> 女
+    </label>
+    <h2>性别: {{ gender }}</h2>
+  </div>
+
+  <!-- 2. 本地通过相对路径的形式引入Vue -->
+  <script src="../lib/vue.js"></script>
+
+  <script>
+    // 3.使用Vue
+    const app = Vue.createApp({
+      data() {
+        return {
+          message: 'Hello Vue3',
+          gender: ''
+        }
+      }
+    })
+
+    // 4.挂载app
+    app.mount('#app')
+  </script>
+</body>
+
+</html>
