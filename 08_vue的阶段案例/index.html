@@ -31,6 +31,11 @@
     tbody tr:hover {
       background: #f5f5f5;
     }
+
+    tfoot {
+      font-weight: 700;
+      text-align: left;
+    }
   </style>
 </head>
 
@@ -53,17 +58,22 @@
           <td>{{ index + 1 }}</td>
           <td>{{ item.name }}</td>
           <td>{{ item.date }}</td>
-          <td>{{ item.price }}</td>
+          <td>{{ formatPrice(item.price) }}</td>
           <td>
-            <button>-</button>
+            <button @click="decrement(item)">-</button>
             {{ item.count }}
-            <button>+</button>
+            <button @click="increment(item)">+</button>
           </td>
           <td>
             <button>移除</button>
           </td>
         </tr>
       </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="6">总价: {{ formatPrice(totalPrice) }}</td>
+        </tr>
+      </tfoot>
     </table>
   </div>
 
@@ -77,6 +87,25 @@
       data() {
         return {
           books: books
+        }
+      },
+      computed: {
+        totalPrice() {
+          // reduce
+          return this.books.reduce((preValue, item) => {
+            return preValue + item.price * item.count
+          }, 0)
+        }
+      },
+      methods: {
+        formatPrice(price) {
+          return '¥' + price
+        },
+        decrement(item) {
+          item.count--
+        },
+        increment(item) {
+          item.count++
         }
       }
     })
