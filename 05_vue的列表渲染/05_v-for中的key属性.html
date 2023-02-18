@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 1. 指定id为app的容器 -->
+  <div id="app">
+    <!-- key的要求: 要是唯一的 -->
+    <!-- key的目的: 提高遍历的性能, 内部会有diff算法参与进去 -->
+    <ul>
+      <li v-for="item in letters" :key="item.id">
+        <h2>name: {{ item.name }}</h2>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 2. 本地通过相对路径的形式引入Vue -->
+  <script src="../lib/vue.js"></script>
+
+  <script>
+    // 3.使用Vue
+    const app = Vue.createApp({
+      data() {
+        return {
+          letters: [
+            {
+              id: 1,
+              name: 'ywz101'
+            },
+            {
+              id: 2,
+              name: 'coderwhy'
+            },
+            {
+              id: 3,
+              name: 'james'
+            }
+          ]
+        }
+      }
+    })
+
+    // 4.挂载app
+    app.mount('#app')
+  </script>
+</body>
+
+</html>
