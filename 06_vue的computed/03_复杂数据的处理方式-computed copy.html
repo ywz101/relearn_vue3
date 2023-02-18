@@ -13,13 +13,13 @@
   <div id="app">
     <!-- 注意: 目前的方式, 还有可以优化的地方, 因为在模板中带有小括号, 还是不够符合视觉 -->
     <!-- (1) 案例1: 姓名的拼接 -->
-    <h2>{{ getFullname() }}</h2>
+    <h2>{{ getFullname }}</h2>
 
     <!-- (2) 案例2: 分数评定是否及格: 使用三元运算符 -->
-    <h2>{{ getScoreLevel() }}</h2>
+    <h2>{{ getScoreLevel }}</h2>
 
     <!-- (3) 字符串文本的翻转: my name is ywz101 => ywz101 is name my -->
-    <h2>{{ reverseMessage() }}</h2>  
+    <h2>{{ reverseMessage }}</h2>  
   </div>
 
   <!-- 2. 本地通过相对路径的形式引入Vue -->
@@ -36,7 +36,11 @@
           message: 'my name is ywz101'
         }
       },
-      methods: {
+      // 为什么它明明是在做方法的运算, 又把它称为属性呢?
+      // 这是因为我们将方法名写在Mustache语法中的时候, 无需带有(), 本质上对于Mustache来讲其实就是属性的渲染
+      // 优势1: 以属性的形式插入在Mustache当中, 会看起来更直观
+      // 优势2: computed属性是带有缓存的, 处理复杂运算的时候, 如果是相同的逻辑, 会带来性能的提升
+      computed: {
         getFullname() {
           return this.firstName + ' ' + this.lastName
         },

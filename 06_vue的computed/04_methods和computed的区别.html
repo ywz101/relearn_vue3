@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 1. 指定id为app的容器 -->
+  <div id="app">
+    <!-- (1) 案例1: 姓名的拼接 -->
+    <!-- mehtods -->
+    <h2>{{ getFullnameM() }}</h2>
+    <h2>{{ getFullnameM() }}</h2>
+    <h2>{{ getFullnameM() }}</h2>
+
+    <!-- computed -->
+    <h2>{{ getFullnameC }}</h2>
+    <h2>{{ getFullnameC }}</h2>
+    <h2>{{ getFullnameC }}</h2>
+
+    <!-- button -->
+    <button @click="changeLastName">修改lastName</button>
+  </div>
+
+  <!-- 2. 本地通过相对路径的形式引入Vue -->
+  <script src="../lib/vue.js"></script>
+
+  <script>
+    // 3.使用Vue
+    const app = Vue.createApp({
+      data() {
+        return {
+          firstName: 'ywz',
+          lastName: 101,
+        }
+      },
+      // 为什么它明明是在做方法的运算, 又把它称为属性呢?
+      // 这是因为我们将方法名写在Mustache语法中的时候, 无需带有(), 本质上对于Mustache来讲其实就是属性的渲染
+      // 优势1: 以属性的形式插入在Mustache当中, 会看起来更直观
+      // 优势2: computed属性是带有缓存的, 处理复杂运算的时候, 如果是相同的逻辑, 会带来性能的提升
+      computed: {
+        getFullnameC() {
+          console.log('computed被调用了~')
+          return this.firstName + ' ' + this.lastName
+        }
+      },
+      methods: {
+        getFullnameM() {
+          console.log('getFullname被调用了~')
+          return this.firstName + ' ' + this.lastName
+        },
+        changeLastName() {
+          return this.lastName = 102
+        }
+      }
+    })
+
+    // 4.挂载app
+    app.mount('#app')
+  </script>
+</body>
+
+</html>
