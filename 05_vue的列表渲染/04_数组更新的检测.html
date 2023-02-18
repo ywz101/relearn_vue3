@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 1. 指定id为app的容器 -->
+  <div id="app">
+    <ul>
+      <!-- v-for遍历li -->
+      <li v-for="item in names">{{ item }}</li>
+    </ul>
+    <button @click="changeArray">修改数组</button>
+  </div>
+
+  <!-- 2. 本地通过相对路径的形式引入Vue -->
+  <script src="../lib/vue.js"></script>
+
+  <script>
+    // 3.使用Vue
+    const app = Vue.createApp({
+      data() {
+        return {
+          names: ['ywz101', 'coderwhy', 'james']
+        }
+      },
+      methods: {
+        changeArray() {
+          // 不返回新数组, 直接修改原数组
+          // push
+          // this.names.push('kobe')
+
+          // pop
+          // this.names.pop()
+
+          // splice(操作数组的利器), 直接修改原数组(容易翻车)
+          // 删除原数组中的'coderwhy'
+          // 参数1: start
+          // 参数2: eteCount
+          // 参数3: item
+          // this.names.splice(1, 1)
+
+          // 返回新数组的, filter(过滤)
+          // this.names = this.names.filter(item => item === 'ywz101')
+
+          // map
+          // this.names = this.names.map(item => item + '101')
+
+          // slice(截取数组)
+          // 参数1: start
+          // 参数2: end, 但是不包括end本身的索引
+          this.names = this.names.slice(0, 2)
+        }
+      }
+    })
+
+    // 4.挂载app
+    app.mount('#app')
+  </script>
+</body>
+
+</html>
