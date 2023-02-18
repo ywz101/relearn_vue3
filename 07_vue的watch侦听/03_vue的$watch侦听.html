@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 1. 指定id为app的容器 -->
+  <div id="app">
+    <h2>{{ message }}</h2>
+  </div>
+
+  <!-- 2. 本地通过相对路径的形式引入Vue -->
+  <script src="../lib/vue.js"></script>
+
+  <script>
+    // 3.使用Vue
+    const app = Vue.createApp({
+      data() {
+        return {
+          message: 'Hello Vue3'
+        }
+      },
+      // 生命同期函数
+      created() {
+        // 在组件被创建时, 就会触发(打开浏览器时会自动触发)
+        // 一般会在里面发起网络请求: ajax/fetch/axios
+        // 在这个里面有一个$watch, 它可以实现watch选项相同的功能
+        // $watch的三个参数: 
+        // 参数1: 侦听源
+        // 参数2: 回调函数
+        // 参数3: 特殊配置(deep和immediate)
+        this.$watch('message', () => {
+          console.log('message被侦听了~')
+        }, { deep: true, immediate: true })
+      }
+    })
+
+    // 4.挂载app
+    app.mount('#app')
+  </script>
+</body>
+
+</html>
