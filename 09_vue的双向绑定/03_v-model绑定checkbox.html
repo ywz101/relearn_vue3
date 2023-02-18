@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 1. 指定id为app的容器 -->
+  <div id="app">
+    <!-- (1) 同意协议 -->
+    <!-- (2) 单个复选框的时候, 不需要刻意关注value值 -->
+    <!-- (3) 事实上复选框被触发的时候, 会传递布尔值给isAgree -->
+    <label>
+      <input type="checkbox" v-model="isAgree"> 同意协议
+    </label>
+    <h2>{{ isAgree }}</h2>
+
+    <hr>
+
+    <!-- 多个复选框的时候, 需要刻意关注value值 -->
+    <div class="hobbies">
+      <label>
+        <input type="checkbox"
+               value="sing" 
+               v-model="hobbies"> 唱
+      </label>
+      <label>
+        <input type="checkbox"
+               value="jump"
+               v-model="hobbies"> 跳
+      </label>
+      <label>
+        <input type="checkbox"
+               value="rap" 
+               v-model="hobbies"> rap
+      </label>
+      <label>
+        <input type="checkbox" 
+               value="basketball" 
+               v-model="hobbies"> 篮球
+      </label>
+      <h2>{{ hobbies }}</h2>
+    </div>
+  </div>
+
+
+
+  <!-- 2. 本地通过相对路径的形式引入Vue -->
+  <script src="../lib/vue.js"></script>
+
+  <script>
+    // 3.使用Vue
+    const app = Vue.createApp({
+      data() {
+        return {
+          message: 'Hello Vue3',
+          isAgree: false,
+          hobbies: []
+        }
+      }
+    })
+
+    // 4.挂载app
+    app.mount('#app')
+  </script>
+</body>
+
+</html>
