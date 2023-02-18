@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 1. 指定id为app的容器 -->
+  <div id="app">
+    <h2>{{ message }}</h2>
+
+    <button @click="changeMessage">修改message</button>
+    <button @click="changeInfo">修改info.name</button>
+  </div>
+
+  <!-- 2. 本地通过相对路径的形式引入Vue -->
+  <script src="../lib/vue.js"></script>
+
+  <script>
+    // 3.使用Vue
+    const app = Vue.createApp({
+      data() {
+        return {
+          message: 'Hello Vue3',
+          info: {
+            name: 'ywz101',
+            age: 18
+          }
+        }
+      },
+      methods: {
+        changeMessage() {
+          this.message = '你好, 世界'
+        },
+        changeInfo() {
+          this.info.name = 'kobe'
+        }
+      },
+      watch: {
+        // 在watch中, 方法名和必须data选项中的属性名一致 
+        message() {
+          console.log('data中的message已经成功侦听~')
+        },
+        // (1) 语法糖的写法:
+        // info(newValue, oldValue) {
+        //   // 1.侦听后的新值同时印象出来(无法获取旧值)
+        //   // console.log('data中的info已经成功侦听~', this.info)
+
+        //   // 2.同时侦听新值和旧值
+        //   console.log('data中的info已经成功侦听~', newValue, oldValue)
+
+        //   // 3.默认侦听到的数据是Proxy的类型, 想把它转为更熟悉的原始对象的类型
+        //   // (1) 展开运算符(...)
+        //   console.log('data中的info已经成功侦听~', { ...newValue }, { ...oldValue })
+
+        //   // (2) Vue提供给我们的, Vue.toRaw()
+        //   console.log('data中的info已经成功侦听~', Vue.toRaw(newValue), Vue.toRaw(oldValue))
+        // }
+
+        // (2) 完整写法: 
+        info: {
+          handler(newValue, oldValue) {
+            console.log('data中的info已经成功侦听~', newValue, oldValue)
+            console.log(newValue === oldValue)
+          },
+          // 开启深度侦听
+          deep: true,
+          // 渲染的(立即)开启
+          immediate: true
+        }
+      }
+    })
+
+    // 4.挂载app
+    app.mount('#app')
+  </script>
+</body>
+
+</html>

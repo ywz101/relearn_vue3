@@ -14,6 +14,7 @@
     <h2>{{ message }}</h2>
 
     <button @click="changeMessage">修改message</button>
+    <button @click="changeInfo">修改info</button>
   </div>
 
   <!-- 2. 本地通过相对路径的形式引入Vue -->
@@ -25,17 +26,41 @@
       data() {
         return {
           message: 'Hello Vue3',
+          info: {
+            name: 'ywz101',
+            age: 18
+          }
         }
       },
       methods: {
         changeMessage() {
           this.message = '你好, 世界'
+        },
+        changeInfo() {
+          this.info = {
+            name: 'kobe',
+            age: 30
+          }
         }
       },
       watch: {
         // 在watch中, 方法名和必须data选项中的属性名一致 
         message() {
           console.log('data中的message已经成功侦听~')
+        },
+        info(newValue, oldValue) {
+          // 1.侦听后的新值同时印象出来(无法获取旧值)
+          // console.log('data中的info已经成功侦听~', this.info)
+
+          // 2.同时侦听新值和旧值
+          console.log('data中的info已经成功侦听~', newValue, oldValue)
+
+          // 3.默认侦听到的数据是Proxy的类型, 想把它转为更熟悉的原始对象的类型
+          // (1) 展开运算符(...)
+          console.log('data中的info已经成功侦听~', { ...newValue }, { ...oldValue })
+
+          // (2) Vue提供给我们的, Vue.toRaw()
+          console.log('data中的info已经成功侦听~', Vue.toRaw(newValue), Vue.toRaw(oldValue))
         }
       }
     })
