@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 1. 指定id为app的容器 -->
+  <div id="app">
+    <h2>{{ message }}</h2>
+    <!-- (1) 如果需要最外层包裹器, 有实际的意义就不要使用template来替换 -->
+    <!-- 比如div本身有独占的特性, 可以让每一项看起来更清晰, 
+      而将div替换成template将会在一行上展示, 
+      根据实际需求来选择 -->
+    <div v-for="(value, key, index) in infos">
+      {{ index }}
+      {{ key }}
+      {{ value }}
+    </div>
+  </div>
+
+  <!-- 2. 本地通过相对路径的形式引入Vue -->
+  <script src="../lib/vue.js"></script>
+
+  <script>
+    // 3.使用Vue
+    const app = Vue.createApp({
+      data() {
+        return {
+          message: 'Hello Vue3',
+          infos: {
+            id: 100,
+            name: 'ywz101',
+            age: 18,
+            height: 1.88
+          }
+        }
+      }
+    })
+
+    // 4.挂载app
+    app.mount('#app')
+  </script>
+</body>
+
+</html>
