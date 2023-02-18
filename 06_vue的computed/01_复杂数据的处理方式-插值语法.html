@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 1. 指定id为app的容器 -->
+  <div id="app">
+    <!-- (1) 案例1: 姓名的拼接 -->
+    <!-- <h2>{{ firstName + ' ' + lastName }}</h2> -->
+    <h2>{{ firstName }} {{ lastName }}</h2>
+
+    <!-- (2) 案例2: 分数评定是否及格: 使用三元运算符 -->
+    <h2>{{ score >= 60 ? '及格' : '不及格' }}</h2>
+
+    <!-- (3) 字符串文本的翻转: my name is ywz101 => ywz101 is name my -->
+    <h2>{{ message.split(' ').reverse().join(' ') }}</h2>  
+  </div>
+
+  <!-- 2. 本地通过相对路径的形式引入Vue -->
+  <script src="../lib/vue.js"></script>
+
+  <script>
+    // 3.使用Vue
+    const app = Vue.createApp({
+      data() {
+        return {
+          firstName: 'ywz',
+          lastName: 101,
+          score: 85,
+          message: 'my name is ywz101'
+        }
+      }
+    })
+
+    // 4.挂载app
+    app.mount('#app')
+  </script>
+</body>
+
+</html>
