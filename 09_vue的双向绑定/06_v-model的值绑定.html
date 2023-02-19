@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 1. 指定id为app的容器 -->
+  <div id="app">
+    <!-- (1) select: 下拉列表的值绑定 -->
+    <div class="fluits">
+      <h2>请选择你喜欢的水果:</h2>
+      <select v-model="fluit">
+        <option v-for="item in allFluits"
+                :key="item.id"
+                :value="item.value">
+                {{ item.text }}
+        </option>
+      </select>
+      <h2>水果: {{ fluit }}</h2>
+    </div>
+
+    <hr>
+
+    <!-- (2) checkbox: 复选框的值绑定 -->
+    <div class="hobbies">
+      <h2>请选择你的爱好:</h2>
+      <label v-for="item in allHobbies"
+             :key="item.id">
+        <input type="checkbox"
+               v-model="hobbies" 
+               :value="item.value">
+               {{ item.text }}
+      </label>
+      <h2>你选择的爱好是: {{ hobbies }}</h2>
+    </div>
+  </div>
+
+  <!-- 2. 本地通过相对路径的形式引入Vue -->
+  <script src="../lib/vue.js"></script>
+
+  <script>
+    // 3.使用Vue
+    const app = Vue.createApp({
+      data() {
+        return {
+          allFluits: [
+            { id: 1, value: 'orange', text: '橘子' },
+            { id: 2, value: 'apple', text: '苹果' },
+            { id: 3, value: 'banana', text: '香蕉' },
+          ],
+          fluit: 'orange',
+          allHobbies: [
+            { id: 1, value: 'sing', text: '唱' },
+            { id: 2, value: 'jump', text: '跳' },
+            { id: 3, value: 'rap', text: '说唱' },
+            { id: 4, value: 'basketball', text: '篮球' },
+          ],
+          hobbies: []
+        }
+      }
+    })
+
+    // 4.挂载app
+    app.mount('#app')
+  </script>
+</body>
+
+</html>
