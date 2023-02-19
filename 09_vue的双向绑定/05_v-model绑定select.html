@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 1. 指定id为app的容器 -->
+  <div id="app">
+    <!-- (1) select>option它是下拉列表 -->
+    <!-- (2) multiple可以让下拉列表显示多个 -->
+    <!-- (3) size可以控制显示几个 -->
+    <!-- (4) 默认显示的是option中的第一个列表项, 这是一种惰性的, 如果结合双向绑定, 此处会以双向绑定的初始值作为第一个列表项目 -->
+
+    <select v-model="fruit">
+      <option value="banana">香蕉</option>
+      <option value="orange">橘子</option>
+      <option value="apple">苹果</option>
+    </select>
+    <h2>当前水果: {{ fruit }}</h2>
+
+    <hr>
+
+    <select v-model="fruits"
+            multiple
+            size="2">
+      <option value="banana">香蕉</option>
+      <option value="orange">橘子</option>
+      <option value="apple">苹果</option>
+    </select>
+    <h2>水果集合: {{ fruits }}</h2>
+  </div>
+
+  <!-- 2. 本地通过相对路径的形式引入Vue -->
+  <script src="../lib/vue.js"></script>
+
+  <script>
+    // 3.使用Vue
+    const app = Vue.createApp({
+      data() {
+        return {
+          fruit: 'apple',
+          fruits: []
+        }
+      }
+    })
+
+    // 4.挂载app
+    app.mount('#app')
+  </script>
+</body>
+
+</html>
