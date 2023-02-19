@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .product {
+      background-color: orange;
+    }
+
+    .nav {
+      background-color: pink;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 1. 指定id为app的容器 -->
+  <div id="app">
+    <!-- 组件可以多次复用的 -->
+    <!-- (1) 使用product-item -->
+    <product-item></product-item>
+    <product-item></product-item>
+    <product-item></product-item>
+
+    <!-- 会被解析成这种productitem, 所以组件生效 -->
+    <!-- <productItem></productItem>  -->
+
+    <!-- (2) 使用home-nav组件 -->
+    <home-nav></home-nav>
+    <home-nav></home-nav>
+    <home-nav></home-nav>
+  </div>
+
+
+
+
+
+  <!-- product组件 -->
+  <template id="product">
+    <div class="product">
+      <h2>商品名称: {{ name }}</h2>
+      <p>商品价格: {{ price }}</p>
+      <p>商品描述: {{ desc }}</p>
+    </div>
+  </template>
+
+  <!-- nav组件 -->
+  <template id="nav">
+    <div class="nav">
+      <h2>{{ message }}</h2>
+    </div>
+  </template>
+  <!-- 2. 本地通过相对路径的形式引入Vue -->
+  <script src="../lib/vue.js"></script>
+
+  <script>
+    // 抽离出根组件
+    const App = {
+      data() {
+        return {
+
+        }
+      }
+    }
+
+    // 3.使用Vue
+    const app = Vue.createApp(App)
+
+    // component: 
+    // 参数1: 组件名称(短横线分割命名和大驼峰命名), 
+    /* 注意: 
+        在.html文件如果组件名称定义为大驼峰, 
+        在使用组件的时候不能写成大驼峰, 
+        这是由于html元素本身不区分大小写导致的,
+        所以也需要将其手动的转为短横线的形式 
+    */
+    /* 
+       参数2: 组件的值是对象的数据类型, 
+       可以直接在里面书写自己的逻辑,
+       不要template选项
+    */
+
+    // 注册全局组件, 并且命名为product-item
+    app.component('product-item', {
+      template: '#product',
+      data() {
+        return {
+          name: '小米手机',
+          price: 3499,
+          desc: '搭载骁龙855芯片....'
+        }
+      }
+    })
+
+    // Vue CLI: 脚手架 Command Line Interface -> vite
+
+    // 注册全局组件, 并且命名为home-nav
+    app.component('home-nav', {
+      template: '#nav',
+      data() {
+        return {
+          message: '我是nav导航'
+        }
+      }
+    })
+    // 4.挂载app
+    app.mount('#app')
+  </script>
+</body>
+
+</html>
