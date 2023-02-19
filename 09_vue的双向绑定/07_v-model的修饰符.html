@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 1. 指定id为app的容器 -->
+  <div id="app">
+    <!-- (1) v-model: 双向绑定中的修饰符 -->
+    <!-- lazy: 本质将v-model由input事件转换为change事件 -->
+    <!-- change事件: 失去焦点同时内容发生了改变 -->
+    <div class="lazy">
+      <input type="text" v-model.lazy="lazyContent">
+      <h2>你输入的内容是: {{ lazyContent }}</h2>
+    </div>
+
+    <hr>
+
+    <!-- (2) v-model.number: 将v-model中的string类型转为number类型 -->
+    <div class="number">
+      <input type="text" v-model.number="numberContent">
+      <h2>你输入的内容是: {{ numberContent }}</h2>
+      <h2>你输入的内容的数据类型是: {{ typeof numberContent }}</h2>
+    </div>
+
+    <hr>
+
+    <!-- (3) trim: 去除首尾空格只是它的其中一个功能, 还有节省性能的效果, 如果输入的空格, 就不再有任何行为 -->
+    <div class="trim">
+      <input type="text" v-model.number="trimContent">
+      <h2>你输入的内容是: {{ trimContent }}</h2>
+    </div>
+
+    <hr>
+
+    <!-- (4) 多个修饰符一直使用: 如: trim.number.lazy -->
+    <!-- number修饰符可能会自动触发去除首尾空格的效果, 还是会触发空格的效果 -->
+    <div class="multiple">
+      <input type="text" v-model.trim="multipleContent">
+      <h2>你输入的内容是: {{ multipleContent }}</h2>
+      <h2>你输入的内容的数据类型是: {{ typeof multipleContent }}</h2>
+    </div>
+  </div>
+
+  <!-- 2. 本地通过相对路径的形式引入Vue -->
+  <script src="../lib/vue.js"></script>
+
+  <script>
+    // 3.使用Vue
+    const app = Vue.createApp({
+      data() {
+        return {
+          lazyContent: '',
+          numberContent: '',
+          trimContent: '',
+          multipleContent: ''
+        }
+      },
+      watch: {
+        trimContent(newValue) {
+          console.log(this.trimContent)
+        },
+        multipleContent(newValue) {
+          console.log(this.multipleContent)
+        }
+      }
+    })
+
+    // 4.挂载app
+    app.mount('#app')
+  </script>
+</body>
+
+</html>
