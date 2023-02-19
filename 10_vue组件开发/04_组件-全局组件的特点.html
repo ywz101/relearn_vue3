@@ -8,6 +8,7 @@
   <title>Document</title>
   <style>
     .product {
+      margin-top: 10px;
       background-color: orange;
     }
 
@@ -20,6 +21,7 @@
 <body>
   <!-- 1. 指定id为app的容器 -->
   <div id="app">
+
     <!-- 组件可以多次复用的 -->
     <!-- (1) 使用product-item -->
     <product-item></product-item>
@@ -38,11 +40,16 @@
 
 
 
-
+    <!-- 全局组件的特点: 可以嵌套 -->
+    <!-- 如: 在定义product组件的时候,
+       可以在里面使用home-nav组件,
+        那么home-nav组件就会作为product组件中的一部分 -->
   <!-- product组件 -->
   <template id="product">
     <div class="product">
       <h2>商品名称: {{ name }}</h2>
+      <!-- 在这里使用了home-nav组件 -->
+      <home-nav></home-nav>
       <p>商品价格: {{ price }}</p>
       <p>商品描述: {{ desc }}</p>
       <button @click="favorBtnClick">收藏</button>
@@ -52,12 +59,14 @@
   <!-- nav组件 -->
   <template id="nav">
     <div class="nav">
+      <div>------------ nav start >------------</div>
       <h2>{{ message }}</h2>
+      <div>------------ nav end >------------</div>
     </div>
   </template>
   <!-- 2. 本地通过相对路径的形式引入Vue -->
   <script src="../lib/vue.js"></script>
-  
+
   <script>
     // 抽离出根组件
     const App = {
