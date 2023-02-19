@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .product {
+      background-color: orange;
+    }
+
+    .nav {
+      background-color: pink;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 
+    局部组件: components选项, 要想组件中嵌套使用, 需要再次注册为局部组件
+
+   -->
+  <!-- 1. 指定id为app的容器 -->
+  <div id="app">
+    <!-- 使用product-item组件 -->
+    <product-item></product-item>
+
+    <!-- 使用home-nav组件 -->
+    <home-nav></home-nav>
+  </div>
+
+  <!-- 定义product组件 -->
+  <template id="product">
+    <div class="product">
+      <h2>商品名称: {{ name }}</h2>
+      <p>商品价格: {{ price }}</p>
+      <!-- 在此处使用home-nav组件 -->
+      <home-nav></home-nav>
+      <p>商品描述: {{ desc }}</p>
+    </div>
+  </template>
+
+  <!-- 定义home-nav组件 -->
+  <template id="nav">
+    <div class="nav">
+      <div>--------- nav start ---------</div>
+      <h2>{{ message }}</h2>
+      <div>--------- nav end ---------</div>
+    </div>
+  </template>
+
+  <!-- 2. 本地通过相对路径的形式引入Vue -->
+  <script src="../lib/vue.js"></script>
+
+  <script>
+    // 抽离为根组件App
+    const App = {
+      data() {
+        return {
+        }
+      },
+      // 在根组件中注册局部组件
+      components: {
+        'product-item': {
+          template: '#product',
+          // 在product-item组件中注册home-nav组件
+          components: {
+            'home-nav': {
+              template: '#nav',
+              data() {
+                return {
+                  message: '我是nav导航, 哈哈哈哈~'
+                }
+              }
+            }
+          },
+          data() {
+            return {
+              name: '小米手机',
+              price: 3499,
+              desc: '小米手机就要冬天买, 暖手又暖心~'
+            }
+          }
+        },
+        'home-nav': {
+          template: '#nav',
+          data() {
+            return {
+              message: '我是nav导航, 哈哈哈哈~'
+            }
+          }
+        }
+      }
+    }
+
+    // 3.使用Vue
+    const app = Vue.createApp(App)
+
+    // 4.挂载app
+    app.mount('#app')
+  </script>
+
+</body>
+
+</html>
