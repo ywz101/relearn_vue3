@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .productItem {
+      background-color: orange;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 1. 指定id为app的容器 -->
+  <div id="app">
+    <!-- 使用组件: 可以复用 -->
+    <product-item></product-item>
+    <product-item></product-item>
+    <product-item></product-item>
+  </div>
+
+
+
+
+
+  <!-- 组件模板区: 定义productItem组件 -->
+  <template id="productItem">
+    <div class="productItem">
+      <h2>商品名称: 小米手机</h2>
+      <p>商品价格: 3499</p>
+      <p>商品描述: 搭载骁龙855芯片...</p>
+    </div>
+  </template>
+
+  <!-- 2. 本地通过相对路径的形式引入Vue -->
+  <script src="../lib/vue.js"></script>
+
+  <script>
+    const App = {
+      data() {
+        return {
+          productName: '小米手机',
+          productPrice: 3499,
+          productDesc: '搭载骁龙855芯片...'
+        }
+      }
+    }
+
+    // 3.使用Vue
+    const app = Vue.createApp(App)
+
+    // 5.注册全局组件component()
+    // component的参数: 
+    //  参数1是组件名称
+    //  参数2是组件对象
+    app.component('product-item', {
+      template: '#productItem'
+    })
+
+    // 4.挂载app
+    app.mount('#app')
+  </script>
+</body>
+
+</html>
