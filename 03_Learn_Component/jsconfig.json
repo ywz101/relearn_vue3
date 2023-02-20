@@ -1,19 +1,23 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "esnext",
-    "baseUrl": "./",
-    "moduleResolution": "node",
+    "target": "es5", // 目标: 最终转化为es5
+    "module": "esnext", // 模块: ECMASCript next:最新的, (ECMAScript最新的模块化规范)
+    "baseUrl": "./", // 对应src的(./当前目录) (../上一级目录 )
+    "moduleResolution": "node", // node查找规则
     "paths": {
-      "@/*": [
-        "src/*"
+      "@/*": [ // *: 通配符
+        "src/*" 
+      ],
+      "utils/*": [
+        "src/utils/*"
       ]
     },
-    "lib": [
+    "lib": [ // 配置的是当前用到的库
       "esnext",
       "dom",
       "dom.iterable",
-      "scripthost"
+      "scripthost", // script的宿主环境
+
     ]
   }
 }
