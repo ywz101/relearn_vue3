@@ -14,8 +14,22 @@ import { createApp } from 'vue'
 // import App from './12_动态组件的使用/App.vue'
 // import App from './13_keep-active的使用/App.vue'
 // import App from './14_异步组件的使用/App.vue'
-import App from './15_组件的v-model/App.vue'
+// import App from './15_组件的v-model/App.vue'
+// import App from './16_组件的混入Mixin/App.vue'
+import App from './17_composition/App.vue'
 
 const app = createApp(App)
 app.config.unwrapInjectedRef = true
+
+// 全局混入
+// app.mixin({
+//   data() {
+//     return {
+//       message: 'Hello World'
+//     }
+//   },
+//   created() {
+//     console.log(this.message)
+//   }
+// })
 app.mount('#app')

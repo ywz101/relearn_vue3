@@ -1,7 +1,7 @@
 <script>
 export default {
-  emits: ['update:modelValue'],
-  props: ['modelValue'],
+  emits: ['update:counter'],
+  props: ['counter'],
   data() {
     return {
       
@@ -9,7 +9,7 @@ export default {
   },
   methods: {
     updateBtnClick() {
-      this.$emit('update:modelValue', 999)
+      this.$emit('update:counter', 999)
     }
   }
 }
