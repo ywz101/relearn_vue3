@@ -1,11 +1,13 @@
 <script>
-import Orange from './views/Orange.vue'
+import { defineAsyncComponent } from 'vue'
+
+const asyncOrange = defineAsyncComponent(() => import('./views/Orange.vue'))
 import Apple from './views/Apple.vue'
 import Banana from './views/Banana.vue'
 
 export default {
   components: {
-    Orange,
+    Orange: asyncOrange,
     Apple,
     Banana
   },
