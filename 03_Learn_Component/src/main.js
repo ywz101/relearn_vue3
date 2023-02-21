@@ -8,7 +8,9 @@ import { createApp } from 'vue'
 // import App from './06_组件插槽-具名插槽/App.vue'
 // import App from './07_组件通信-案例练习-插槽作用域重构/App.vue'
 // import App from './08_provide和inject/App.vue'
-import App from './09_事件总线的使用/App.vue'
+// import App from './09_事件总线的使用/App.vue'
+// import App from './10_生命周期函数演练/App.vue'
+import App from './11_ref获取元素组件/App.vue'
 
 const app = createApp(App)
 app.config.unwrapInjectedRef = true
