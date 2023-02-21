@@ -13,7 +13,7 @@ export default {
     return {
       fruits: ['orange', 'apple', 'banana'],
       currentFruit: 'orange',
-      message: '我是App'
+      message: '我是App',
     }
   },
   methods: {
@@ -23,7 +23,7 @@ export default {
     componentClick(payload) {
       this.message = payload
       console.log('oarnge组件中的事件监听成功:', payload)
-    }
+    },
   }
 }
 </script>
@@ -38,18 +38,13 @@ export default {
       </template>
     </div>
   </div>
-<!-- 动态组件 -->
-<!-- 1.传递参数 -->
-<!-- 2.监听事件 -->
-  <component :is="currentFruit"
-             name="ywz101"
-             :age="18"
-             @orangeClick="componentClick">
-  </component>
-
-  <hr>
-
-  <h2>{{ message }}</h2>
+  <!-- 动态组件 -->
+  <!-- 1.传递参数 -->
+  <!-- 2.监听事件 -->
+  <keep-alive>
+    <component :is="currentFruit" @orangeClick="componentClick">
+    </component>
+  </keep-alive>
 </template>
 
 <style scoped>

@@ -11,7 +11,8 @@ import { createApp } from 'vue'
 // import App from './09_事件总线的使用/App.vue'
 // import App from './10_生命周期函数演练/App.vue'
 // import App from './11_ref获取元素组件/App.vue'
-import App from './12_动态组件的使用/App.vue'
+// import App from './12_动态组件的使用/App.vue'
+import App from './13_keep-active的使用/App.vue'
 
 const app = createApp(App)
 app.config.unwrapInjectedRef = true
