@@ -7,15 +7,17 @@
     },
     data() {
       return {
-        
+
       }
-    }
+    },
+
   }
 </script>
 
 <template>
   <div class="home">
     <HomeBanner />
+  
   </div>
 </template>
 
