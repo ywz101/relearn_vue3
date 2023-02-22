@@ -22,7 +22,7 @@ export default {
 <template>
   <div class="home">
     <h2>{{ info }}</h2>
-    <button @click="info.name = 'kobe'">修改info.name</button>
+    <button @click="showInfoBtnClick">修改info.name</button>
   </div>
 </template>
 
