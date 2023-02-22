@@ -1,5 +1,5 @@
 <script>
-import useCounter from './hooks/counter'
+import useCounter from '../hooks/counter'
 
 export default {
   setup() {
