@@ -1,17 +1,29 @@
 <script setup>
-/* script_setup语法的特性: 每次使用组件实例的时候都会执行一次setup函数,
-   和原来的只在组件被创建的时候执行一次setup函数是不同的
-*/
+import { ref, onMounted } from 'vue'
 import Home from './views/Home.vue'
+// 1.script顶层中的内容可以直接在template模板中使用
+const message = ref('Hello setup')
 
-const message = 'Hello setup'
+const homeBtnClick = (payload) => {
+  message.value = payload
+}
+
+// 3.调用Home组件中的foo函数
+const homeRef = ref()
+onMounted(() => {
+  homeRef.value.foo()
+  homeRef.value.foo()
+})
 </script>
 
 <template>
   <div class="app">
-    <Home />
-    <Home />
-    <h2>{{ message }}</h2>
+    <h2>message: {{ message }}</h2>
+    <hr>
+    <Home name='ywz101' 
+          :age="18"
+          @home-btn-click="homeBtnClick"
+          ref="homeRef" />
   </div>
 </template>
 
