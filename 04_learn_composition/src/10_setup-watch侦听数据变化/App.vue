@@ -1,5 +1,5 @@
 <script>
-import { reactive, watch } from 'vue'
+import { reactive, watch, watchEffect, ref } from 'vue'
 
 export default {
   setup() {
@@ -17,6 +17,7 @@ export default {
     //   console.log(newValue, oldValue)
     // })
 
+    // 1.watch
     // 侦听info原始对象, 默认不会深度侦听
     watch(() => ({ ...info }), (newValue, oldValue) => {
       console.log(newValue, oldValue)
@@ -32,10 +33,29 @@ export default {
       info.friend.name = 'nicholas'
     }
 
+    // 计数器案例
+    const counter = ref(0)
+    const increment = () => {
+      counter.value++
+    }
+    // 2.watchEffect: 
+    // (0) 不需要再像watch侦听一样, 写好侦听源了
+    // (1) watchEffect函数自动执行一次 
+    // (2) 可以自动收集依赖
+    // (3) 停止watchEffect, 它会接收返回值, 当调用返回的时候就会停止
+    const stopWatchEffect = watchEffect(() => {
+      console.log('-----------', counter.value)
+      if (counter.value >= 10) {
+        stopWatchEffect()
+      }
+    })
+
     return {
       info,
       changeInfoName,
-      changeInfoFriendName
+      changeInfoFriendName,
+      counter,
+      increment
     }
   }
 }
@@ -47,6 +67,9 @@ export default {
     <h2>InfoFriendName: {{ info.friend.name }}</h2>
     <button @click="changeInfoName">修改info.name</button>
     <button @click="changeInfoFriendName">修改info.name</button>
+    <hr>
+    <h2>当前计数: {{ counter }}</h2>
+    <button @click="increment">+1</button>
   </div>
 </template>
 
