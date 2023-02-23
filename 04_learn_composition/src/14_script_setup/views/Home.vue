@@ -30,6 +30,8 @@ defineExpose({
   <div class="home">
     <h2>Home组件: {{ name }} - {{ age }}</h2>
     <button @click="homeBtnClick">发射事件</button>
+    <button @click="name = 'kobe'">修改name</button>
+    <button @click="age++">修改age</button>
   </div>
 </template>
 

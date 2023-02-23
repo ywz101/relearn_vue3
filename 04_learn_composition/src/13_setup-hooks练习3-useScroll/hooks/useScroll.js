@@ -1,17 +1,17 @@
-import { ref } from "vue"
+import { reactive } from "vue"
 
 export default function useScroll() {
+  const scrollPosition = reactive({
+    x: 0,
+    y: 0
+  })
   // 监听document的scroll滚动事件
-  const myX = ref(0)
-  const myY = ref(0)
-
   document.addEventListener('scroll', () => {
-    myX.value = window.scrollX
-    myY.value = window.scrollY
+    scrollPosition.x = window.scrollX
+    scrollPosition.y = window.scrollY
   })
 
   return {
-    myX,
-    myY
+    scrollPosition
   }
 }

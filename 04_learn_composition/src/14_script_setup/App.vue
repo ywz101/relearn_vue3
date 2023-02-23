@@ -14,14 +14,15 @@ onMounted(() => {
   homeRef.value.foo()
   homeRef.value.foo()
 })
+
 </script>
 
 <template>
   <div class="app">
     <h2>message: {{ message }}</h2>
     <hr>
-    <Home name='ywz101' 
-          :age="18"
+    <Home name = 'ywz101'
+          :age = 18
           @home-btn-click="homeBtnClick"
           ref="homeRef" />
   </div>
