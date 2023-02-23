@@ -9,6 +9,7 @@ import { createApp } from 'vue'
 // import App from './07_setup中ref引入元素/App.vue'
 // import App from './08_setup生命周期函数/App.vue'
 // import App from './09_setup-provide-inject/App.vue'
-import App from './10_setup-watch侦听数据变化/App.vue'
+// import App from './10_setup-watch侦听数据变化/App.vue'
+import App from './11_setup-hooks练习/App.vue'
 
 createApp(App).mount('#app')
